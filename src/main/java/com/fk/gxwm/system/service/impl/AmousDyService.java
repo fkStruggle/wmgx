@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fk.gxwm.common.pojo.WgAnonymousDynamic;
+import com.fk.gxwm.common.util.Page;
 import com.fk.gxwm.common.util.exception.ServiceException;
-import com.fk.gxwm.system.utils.Page;
 
 /**
  * 

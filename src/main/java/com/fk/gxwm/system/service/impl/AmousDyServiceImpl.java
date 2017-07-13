@@ -11,8 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fk.gxwm.common.mapper.WgAnonymousDynamicMapper;
 import com.fk.gxwm.common.pojo.WgAnonymousDynamic;
+import com.fk.gxwm.common.util.Page;
 import com.fk.gxwm.common.util.exception.ServiceException;
-import com.fk.gxwm.system.utils.Page;
 @Service("amousDyService")
 public class AmousDyServiceImpl implements AmousDyService {
     @Autowired

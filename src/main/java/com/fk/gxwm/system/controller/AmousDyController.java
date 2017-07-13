@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fk.gxwm.common.pojo.WgAnonymousDynamic;
+import com.fk.gxwm.common.util.Page;
 import com.fk.gxwm.system.service.impl.AmousDyService;
-import com.fk.gxwm.system.utils.Page;
 
 /**
 * <p>Title:AmousDyController </p>
