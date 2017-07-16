@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fk.gxwm.common.mapper.WgAnonymousDynamicMapper;
 import com.fk.gxwm.common.pojo.WgAnonymousDynamic;
+import com.fk.gxwm.common.util.Constant;
 import com.fk.gxwm.common.util.Page;
 import com.fk.gxwm.common.util.exception.ServiceException;
 @Service("amousDyService")
@@ -21,28 +22,43 @@ public class AmousDyServiceImpl implements AmousDyService {
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public void pubAnoDynamic(WgAnonymousDynamic wgAnonymousDynamic, MultipartFile[] files) throws ServiceException {
-        if (files != null && files.length > 0) {
-            //循环获取file数组中得文件
-            String imgUploadPath = "";
-            StringBuffer imgPaths = new StringBuffer(imgUploadPath);
-            for (int i = 0; i < files.length; i++) {
-                MultipartFile file = files[i];
-                String imgPath = saveImag(file);
-                //保存图片
-                imgPaths.append(";");
-                imgPaths.append(imgPath);
+        try {
+            if (files != null && files.length > 0) {
+                //循环获取file数组中得文件(格式:{"路劲":["图片1"，"图片2"，"图片3"]})
+                if (files.length > 0) {
+                    String imgUploadPath = Constant.IMG_PATH;
+                    StringBuffer imgPaths = new StringBuffer();
+                    imgPaths.append("{\"");
+                    imgPaths.append(imgUploadPath);
+                    imgPaths.append("\":[");
+                    for (int i = 0; i < files.length; i++) {
+                        MultipartFile file = files[i];
+                        String imgPath = saveImag(file);
+                        //保存图片
+                        imgPaths.append("\"");
+                        imgPaths.append(imgPath);
+                        imgPaths.append("\"");
+                        imgPaths.append(",");
+                    }
+                    imgPaths.substring(imgPaths.length() - 1);
+                    imgPaths.append("]}");
+                    wgAnonymousDynamic.setDynamicimg(imgUploadPath);
+                }
             }
-            wgAnonymousDynamic.setDynamicimg(imgUploadPath);
-
+            wgAnonymousDynamic.setReleasetime(new Date());
+            wgAnonymousDynamic.setUserloginname("");
+            wgAnonymousDynamicMapper.insert(wgAnonymousDynamic);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ServiceException("service层错误:"+e.getMessage());
         }
-        wgAnonymousDynamic.setReleasetime(new Date());
-        wgAnonymousDynamic.setUserloginname("");
-        wgAnonymousDynamicMapper.insert(wgAnonymousDynamic);
     }
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public void delAnoDynamic(Long id) throws ServiceException {
         try {
+            WgAnonymousDynamic wgAnonymousDynamic = wgAnonymousDynamicMapper.selectByPrimaryKey(id);
+            wgAnonymousDynamic.getDynamicimg();
             wgAnonymousDynamicMapper.deleteByPrimaryKey(id);
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,7 +74,7 @@ public class AmousDyServiceImpl implements AmousDyService {
 
     }
 
-    private String saveImag(MultipartFile file) {
+    private String saveImag(MultipartFile file) throws ServiceException {
         // 判断文件是否为空  
         if (!file.isEmpty()) {
             try {
@@ -69,6 +85,7 @@ public class AmousDyServiceImpl implements AmousDyService {
                 return filePath;
             } catch (Exception e) {
                 e.printStackTrace();
+                throw new ServiceException("service层错误：新增匿名动态保存图片时发生错误");
             }
         }
         return "";
