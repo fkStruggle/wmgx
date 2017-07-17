@@ -1,5 +1,7 @@
 package com.fk.gxwm.system.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fk.gxwm.common.pojo.WgAnonymousDynamic;
+import com.fk.gxwm.common.util.Constant;
 import com.fk.gxwm.common.util.Page;
+import com.fk.gxwm.common.util.ResponseMsg;
+import com.fk.gxwm.common.util.exception.ServiceException;
 import com.fk.gxwm.system.service.impl.AmousDyService;
 
 /**
@@ -32,28 +37,54 @@ public class AmousDyController {
      * @return
      */
     @RequestMapping("/pubAnoDynamic")
-    public String pubAnoDynamic(WgAnonymousDynamic wgAnonymousDynamic,
+    public ResponseMsg pubAnoDynamic(WgAnonymousDynamic wgAnonymousDynamic,
         @RequestParam("files") MultipartFile[] files,
         HttpServletRequest request,
         HttpServletResponse response) {
-        amousDyService.pubAnoDynamic(wgAnonymousDynamic, files);
-        return "";
+        ResponseMsg res = new ResponseMsg(true, Constant.successCode, "发布成功", null);
+        try {
+            amousDyService.pubAnoDynamic(wgAnonymousDynamic, files);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+            res = new ResponseMsg(false, Constant.errorCode, e.getMessage(), null);
+        }
+        return res;
     }
     /**
      * 根据id删除动态
      * @param id 动态id
      */
     @RequestMapping("/delAnoDynamic")
-    public void delAnoDynamic(Long id) {
-
+    public ResponseMsg delAnoDynamic(Long id) {
+        ResponseMsg res = new ResponseMsg(true, Constant.successCode, "删除成功", null);
+        try {
+            amousDyService.delAnoDynamic(id);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+            res = new ResponseMsg(false, Constant.errorCode, e.getMessage(), null);
+        }
+        return res;
     }
     /**
      * 查看所有匿名动态信息
      * @param page 分页信息
      */
     @RequestMapping("/findAnoDynamics")
-    public void findAnoDynamics(Page page) {
-
+    public ResponseMsg findAnoDynamics(Page page) {
+        List<WgAnonymousDynamic> wads = null;
+        ResponseMsg res = new ResponseMsg(true, Constant.successCode, "查看成功", null);
+        if(page == null){
+            page = new Page();
+            page.setCurrentPage(1);
+        }
+        try {
+            wads = amousDyService.findAnoDynamics(page);
+            res.setData(wads);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+            res = new ResponseMsg(false, Constant.errorCode, e.getMessage(), null);
+        }
+        return res;
     }
 
 }

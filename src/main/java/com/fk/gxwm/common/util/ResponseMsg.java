@@ -9,7 +9,7 @@ package com.fk.gxwm.common.util;
  */
 public class ResponseMsg {
     //成功标识
-    private String isSuccess;
+    private boolean isSuccess;
     //提示编码
     private String code;
     //提示信息
@@ -17,7 +17,7 @@ public class ResponseMsg {
     //数据
     private Object data;
     
-    public ResponseMsg(String isSuccess, String code, String message, Object data) {
+    public ResponseMsg(boolean isSuccess, String code, String message, Object data) {
         super();
         this.isSuccess = isSuccess;
         this.code = code;
@@ -27,10 +27,10 @@ public class ResponseMsg {
     public ResponseMsg(){
         
     }
-    public String getIsSuccess() {
+    public boolean getIsSuccess() {
         return isSuccess;
     }
-    public void setIsSuccess(String isSuccess) {
+    public void setIsSuccess(boolean isSuccess) {
         this.isSuccess = isSuccess;
     }
     public String getCode() {
