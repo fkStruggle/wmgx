@@ -209,7 +209,7 @@
     where dynamicId = #{dynamicid,jdbcType=BIGINT}
   </update>
   <!-- 分页查询 -->
-  <select id="selectAnsDy" resultType="BaseResultMap" >
+  <select id="selectAnsDy" resultMap="BaseResultMap" >
       select * from wg_anonymous_dynamic limit #{start},#{everyPage};
   </select>
 </mapper>

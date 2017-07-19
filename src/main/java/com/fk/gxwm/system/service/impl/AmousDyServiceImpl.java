@@ -46,7 +46,7 @@ public class AmousDyServiceImpl implements AmousDyService {
                     }
                     imgPaths.substring(imgPaths.length() - 1);
                     imgPaths.append("]}");
-                    wgAnonymousDynamic.setDynamicimg(imgUploadPath);
+                    wgAnonymousDynamic.setDynamicimg(imgPaths.toString());
                 }
             }
             wgAnonymousDynamic.setReleasetime(new Date());

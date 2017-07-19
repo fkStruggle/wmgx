@@ -30,7 +30,7 @@
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="dataSource" ref="dataSource"/>
         <property name="typeAliasesPackage" value="com.fk.gxwm.common.pojo"/>
-        <property name="mapperLocations" value="classpath:com.fk.gxwm.common.pojo/*.xml"/>
+        <property name="mapperLocations" value="classpath:com/fk/gxwm/common/pojo/*.xml"/>
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
