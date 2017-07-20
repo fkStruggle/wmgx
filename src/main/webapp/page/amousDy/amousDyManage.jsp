@@ -9,7 +9,7 @@
 <div>
 	发布匿名交流:
 	<form action="<%=path %>/amousDy/pubAnoDynamic" method="post" enctype="multipart/form-data">
-	<textarea name="dynamicinfo"  rows="3" cols="5" maxlength="140"
+	<textarea name="dynamicinfo"  rows="10" cols="100" maxlength="140"
 										placeholder="来匿名发个信息，爆个料吧"></textarea>
     <input name ="files" type="file" value=""/>
 
