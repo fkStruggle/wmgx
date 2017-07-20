@@ -16,6 +16,9 @@
     <input id="publis" type="submit" value="发布" />
     </form>
 </div>
+<div>
+    
+</div>
 <script type="text/javascript" src="<%=path%>/js/importJs/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
     function publis(){

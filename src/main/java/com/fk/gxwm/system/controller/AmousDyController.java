@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fk.gxwm.common.pojo.WgAnonymousDynamic;
 import com.fk.gxwm.common.util.Constant;
@@ -37,7 +39,8 @@ public class AmousDyController {
      * @return
      */
     @RequestMapping("/pubAnoDynamic")
-    public ResponseMsg pubAnoDynamic(WgAnonymousDynamic wgAnonymousDynamic,
+    //@ResponseBody
+    public ModelAndView pubAnoDynamic(WgAnonymousDynamic wgAnonymousDynamic,
         @RequestParam("files") MultipartFile[] files,
         HttpServletRequest request,
         HttpServletResponse response) {
@@ -48,7 +51,11 @@ public class AmousDyController {
             e.printStackTrace();
             res = new ResponseMsg(false, Constant.errorCode, e.getMessage(), null);
         }
-        return res;
+        ModelAndView modelAndView = new ModelAndView(); 
+        modelAndView.setViewName("amousDy/amousDyManage");
+        //modelAndView.addObject("name", "amousDyManage");  
+        //response.sendRedirect(request.getContentLength()+"");
+        return modelAndView;
     }
     /**
      * 根据id删除动态

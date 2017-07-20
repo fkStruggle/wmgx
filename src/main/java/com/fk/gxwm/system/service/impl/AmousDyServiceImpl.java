@@ -34,10 +34,10 @@ public class AmousDyServiceImpl implements AmousDyService {
                     StringBuffer imgPaths = new StringBuffer();
                     imgPaths.append("{\"");
                     imgPaths.append(imgUploadPath);
-                    imgPaths.append("\":[");
+                    imgPaths.append("\":["); 
                     for (int i = 0; i < files.length; i++) {
                         MultipartFile file = files[i];
-                        String imgPath = saveImag(file);
+                        String imgPath = FileUtil.uploadImag(file);
                         //保存图片
                         imgPaths.append("\"");
                         imgPaths.append(imgPath);
@@ -93,22 +93,4 @@ public class AmousDyServiceImpl implements AmousDyService {
         }
         return wads;
     }
-
-    private String saveImag(MultipartFile file) throws ServiceException {
-        // 判断文件是否为空  
-        if (!file.isEmpty()) {
-            try {
-                // 文件保存路径  
-                String filePath = file.getOriginalFilename();
-                // 转存文件  
-                file.transferTo(new File(filePath));
-                return filePath;
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new ServiceException("service层错误：新增匿名动态保存图片时发生错误");
-            }
-        }
-        return "";
-    }
-
 }
