@@ -49,7 +49,7 @@ public class FileUtil {
                 String extendImageName = String.valueOf(System.currentTimeMillis())+filePath.substring(filePath.lastIndexOf("."));
                 // 转存文件  
                 file.transferTo(new File(Constant.IMG_PATH,extendImageName));
-                return filePath;
+                return extendImageName;
             } catch (Exception e) {
                 e.printStackTrace();
                 throw new UtilException("工具类错误：上传图片失败");

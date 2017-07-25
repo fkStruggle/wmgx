@@ -1,6 +1,7 @@
 package com.fk.gxwm.system.service.impl;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class AmousDyServiceImpl implements AmousDyService {
                         imgPaths.append("\"");
                         imgPaths.append(",");
                     }
-                    imgPaths.substring(imgPaths.length() - 1);
+                    imgPaths.substring(imgPaths.length());
                     imgPaths.append("]}");
                     wgAnonymousDynamic.setDynamicimg(imgPaths.toString());
                 }
@@ -87,6 +88,13 @@ public class AmousDyServiceImpl implements AmousDyService {
         List<WgAnonymousDynamic> wads = null;
         try {
             wads = wgAnonymousDynamicMapper.selectAnsDy((page.getCurrentPage() - 1) * page.getEveryPage(), page.getEveryPage());
+            for(WgAnonymousDynamic wad:wads){
+                List<String> list = new ArrayList<String>();
+                list.add("1501001333479.jpg");
+                //JSONObject jsonObjec = JSONObject.parseObject(wad.getDynamicinfo());
+                //jsonObjec.keySet();
+                wad.setImageNames(list);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServiceException("service层错误：查看匿名动态发生错误");

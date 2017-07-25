@@ -1,6 +1,13 @@
 package com.fk.gxwm.common.util.exception;
-
-public class UtilException extends RuntimeException {
+/**
+ * 
+* <p>Title:UtilException </p>
+* <p>Description:工具类非运行时异常 </p>
+* <p>Company: </p> 
+* @author fangkun
+* @date 2017年7月24日
+ */
+public class UtilException extends Exception {
     /**
      * 
      */

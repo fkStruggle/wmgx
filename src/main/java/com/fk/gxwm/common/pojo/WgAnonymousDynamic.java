@@ -1,6 +1,7 @@
 package com.fk.gxwm.common.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class WgAnonymousDynamic {
     private Long dynamicid;
@@ -12,6 +13,16 @@ public class WgAnonymousDynamic {
     private String dynamicimg;
 
     private Date releasetime;
+    
+    private List<String> imageNames;
+
+    public List<String> getImageNames() {
+        return imageNames;
+    }
+
+    public void setImageNames(List<String> imageNames) {
+        this.imageNames = imageNames;
+    }
 
     public Long getDynamicid() {
         return dynamicid;
@@ -52,4 +63,5 @@ public class WgAnonymousDynamic {
     public void setReleasetime(Date releasetime) {
         this.releasetime = releasetime;
     }
+    
 }

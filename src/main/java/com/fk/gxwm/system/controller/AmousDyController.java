@@ -7,9 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -44,6 +45,7 @@ public class AmousDyController {
         @RequestParam("files") MultipartFile[] files,
         HttpServletRequest request,
         HttpServletResponse response) {
+        @SuppressWarnings("unused")
         ResponseMsg res = new ResponseMsg(true, Constant.successCode, "发布成功", null);
         try {
             amousDyService.pubAnoDynamic(wgAnonymousDynamic, files);
@@ -77,10 +79,10 @@ public class AmousDyController {
      * @param page 分页信息
      */
     @RequestMapping("/findAnoDynamics")
-    public ResponseMsg findAnoDynamics(Page page) {
+    public ModelAndView findAnoDynamics(@RequestBody Page page,ModelAndView model) {
         List<WgAnonymousDynamic> wads = null;
         ResponseMsg res = new ResponseMsg(true, Constant.successCode, "查看成功", null);
-        if(page == null){
+        if(page == null|| page.getCurrentPage()==0){
             page = new Page();
             page.setCurrentPage(1);
         }
@@ -91,7 +93,9 @@ public class AmousDyController {
             e.printStackTrace();
             res = new ResponseMsg(false, Constant.errorCode, e.getMessage(), null);
         }
-        return res;
+        model.addObject("res",res);
+        model.setViewName("amousDy/amousDyList");
+        return model;
     }
 
 }
