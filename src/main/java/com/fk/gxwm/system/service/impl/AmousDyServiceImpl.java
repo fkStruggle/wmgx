@@ -3,7 +3,11 @@ package com.fk.gxwm.system.service.impl;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +38,8 @@ public class AmousDyServiceImpl implements AmousDyService {
                     String imgUploadPath = Constant.IMG_PATH;
                     StringBuffer imgPaths = new StringBuffer();
                     imgPaths.append("{\"");
-                    imgPaths.append(imgUploadPath);
+                    //imgPaths.append(imgUploadPath);
+                    imgPaths.append("imagePath");
                     imgPaths.append("\":["); 
                     for (int i = 0; i < files.length; i++) {
                         MultipartFile file = files[i];
@@ -45,7 +50,9 @@ public class AmousDyServiceImpl implements AmousDyService {
                         imgPaths.append("\"");
                         imgPaths.append(",");
                     }
-                    imgPaths.substring(imgPaths.length());
+                    String str = imgPaths.substring(0,imgPaths.length()-1);
+                    imgPaths.setLength(0);
+                    imgPaths.append(str);
                     imgPaths.append("]}");
                     wgAnonymousDynamic.setDynamicimg(imgPaths.toString());
                 }
@@ -90,9 +97,18 @@ public class AmousDyServiceImpl implements AmousDyService {
             wads = wgAnonymousDynamicMapper.selectAnsDy((page.getCurrentPage() - 1) * page.getEveryPage(), page.getEveryPage());
             for(WgAnonymousDynamic wad:wads){
                 List<String> list = new ArrayList<String>();
-                list.add("1501001333479.jpg");
+                JSONObject jsonObjec = JSONObject.parseObject(wad.getDynamicimg());
+                Set<Entry<String, Object>>  entry = jsonObjec.entrySet();
+                Iterator<Entry<String, Object>> it = entry.iterator();
+                while(it.hasNext()){
+                    JSONArray jsonArry = (JSONArray) it.next().getValue();
+                    for(Object str:jsonArry.toArray())
+                    list.add((String) str);
+                }
+                //it.
+                
                 //JSONObject jsonObjec = JSONObject.parseObject(wad.getDynamicinfo());
-                //jsonObjec.keySet();
+                //jsonObjec.keySet();list
                 wad.setImageNames(list);
             }
         } catch (Exception e) {
