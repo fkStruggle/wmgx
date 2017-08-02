@@ -7,8 +7,8 @@
 <!DOCTYPE html>
 <html>
 <div>
-	发布匿名交流:
-	<!-- 
+									发布匿名交流:
+									<!-- 
 	    enctype的解释
 		application/x-www-form-urlencoded	在发送前编码所有字符（默认）
 		multipart/form-data	
@@ -16,22 +16,31 @@
 		在使用包含文件上传控件的表单时，必须使用该值。
 		text/plain	空格转换为 "+" 加号，但不对特殊字符编码。
 	 -->
-	<form action="<%=path %>/amousDy/pubAnoDynamic" method="post" enctype="multipart/form-data">
-	<textarea name="dynamicinfo"  rows="10" cols="100" maxlength="140"
-										placeholder="来匿名发个信息，爆个料吧"></textarea>
-    <input name ="files" type="file" value=""/>
-
-    <input id="publis" type="submit" value="发布" />
-    </form>
+	<form action="<%=path%>/amousDy/pubAnoDynamic" method="post"
+										enctype="multipart/form-data">
+		<textarea name="dynamicinfo" rows="10" cols="100"
+											maxlength="140" placeholder="来匿名发个信息，爆个料吧"></textarea>
+		<!-- multiple="multiple" 支持多文件上传  -->
+		<input id="fileupload" name="files" type="file"  multiple="multiple"/> 
+		<input id="publis" type="submit" value="发布" />
+	</form>
 </div>
 <!-- 数据 -->
 <div id="amousDyListView">
-    <jsp:include page="amousDyList.jsp"></jsp:include>
+		<jsp:include page="amousDyList.jsp"></jsp:include>
 </div>
-<script type="text/javascript" src="<%=path%>/js/importJs/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+									src="<%=path%>/js/importJs/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+									src="<%=path%>/fileupload/js/vendor/jquery.ui.widget.js"></script>
+<script type="text/javascript"
+									src="<%=path%>/fileupload/js/jquery.iframe-transport.js"></script>
+<script type="text/javascript"
+									src="<%=path%>/fileupload/js/jquery.fileupload.js"></script>
 <script type="text/javascript">
     $(function(){
     	var dataStr ='{"currentPage":1}';
+    	//var dataStr ='{"currentPage":1,"totalCount":100}';
         $.ajax({
         	url:"<%=path%>/amousDy/findAnoDynamics",
         	type:"post",
@@ -42,6 +51,18 @@
         		$("#amousDyListView").html(data);
         	}
         });
-    });
+        
+      /*    $('#fileupload').fileupload({
+        	dataType: 'json',
+        	// 上传完成后的执行逻辑
+        	done: function (e, data) {
+        	$.each(data.result.files, function (index, file) {
+        		debugger;
+        	$('<p/>').text(file.name).appendTo(document.body);
+        	});
+        	},
+     
+		});  */
+	});
 </script>
 </html>
