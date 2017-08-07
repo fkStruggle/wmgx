@@ -10,4 +10,5 @@
         </c:forEach>
         <%-- <textarea >${var.dynamicinfo }</textarea> --%>
     </div>
+    <hr/>
 </c:forEach>
