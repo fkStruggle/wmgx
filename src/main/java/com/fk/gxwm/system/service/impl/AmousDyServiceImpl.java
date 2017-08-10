@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSONArray;
@@ -102,8 +102,12 @@ public class AmousDyServiceImpl implements AmousDyService {
                 Iterator<Entry<String, Object>> it = entry.iterator();
                 while(it.hasNext()){
                     JSONArray jsonArry = (JSONArray) it.next().getValue();
-                    for(Object str:jsonArry.toArray())
-                    list.add((String) str);
+                    for(Object str:jsonArry.toArray()){
+                    	if(!StringUtils.isEmpty(str)){
+                    		list.add((String) str);
+                    	}
+                    }
+                    
                 }
                 //it.
                 

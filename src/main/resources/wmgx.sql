@@ -51,3 +51,21 @@ CREATE TABLE `wg_user` (
 -- ----------------------------
 -- Records of wg_user
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `wg_anonymous_comment`
+-- ----------------------------
+DROP TABLE IF EXISTS `wg_anonymous_comment`;
+CREATE TABLE `wg_anonymous_comment` (
+  `aCommentId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `aParentComId` bigint(20) DEFAULT NULL,
+  `dynamicId` bigint(20) NOT NULL,
+  `userId` bigint(20) DEFAULT NULL,
+  `cConten` varchar(250) NOT NULL,
+  `cTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`aCommentId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of wg_anonymous_comment
+-- ----------------------------

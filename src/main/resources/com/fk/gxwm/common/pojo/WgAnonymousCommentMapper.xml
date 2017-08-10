@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fk.gxwm.common.mapper.WgAnonymousCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.fk.gxwm.common.pojo.WgAnonymousComment" >
+    <id column="aCommentId" property="acommentid" jdbcType="BIGINT" />
+    <result column="aParentComId" property="aparentcomid" jdbcType="BIGINT" />
+    <result column="dynamicId" property="dynamicid" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="cConten" property="cconten" jdbcType="VARCHAR" />
+    <result column="cTime" property="ctime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    aCommentId, aParentComId, dynamicId, userId, cConten, cTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fk.gxwm.common.pojo.WgAnonymousCommentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wg_anonymous_comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from wg_anonymous_comment
+    where aCommentId = #{acommentid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from wg_anonymous_comment
+    where aCommentId = #{acommentid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fk.gxwm.common.pojo.WgAnonymousCommentExample" >
+    delete from wg_anonymous_comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fk.gxwm.common.pojo.WgAnonymousComment" >
+    insert into wg_anonymous_comment (aCommentId, aParentComId, dynamicId, 
+      userId, cConten, cTime
+      )
+    values (#{acommentid,jdbcType=BIGINT}, #{aparentcomid,jdbcType=BIGINT}, #{dynamicid,jdbcType=BIGINT}, 
+      #{userid,jdbcType=BIGINT}, #{cconten,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fk.gxwm.common.pojo.WgAnonymousComment" >
+    insert into wg_anonymous_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="acommentid != null" >
+        aCommentId,
+      </if>
+      <if test="aparentcomid != null" >
+        aParentComId,
+      </if>
+      <if test="dynamicid != null" >
+        dynamicId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="cconten != null" >
+        cConten,
+      </if>
+      <if test="ctime != null" >
+        cTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="acommentid != null" >
+        #{acommentid,jdbcType=BIGINT},
+      </if>
+      <if test="aparentcomid != null" >
+        #{aparentcomid,jdbcType=BIGINT},
+      </if>
+      <if test="dynamicid != null" >
+        #{dynamicid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="cconten != null" >
+        #{cconten,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fk.gxwm.common.pojo.WgAnonymousCommentExample" resultType="java.lang.Integer" >
+    select count(*) from wg_anonymous_comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update wg_anonymous_comment
+    <set >
+      <if test="record.acommentid != null" >
+        aCommentId = #{record.acommentid,jdbcType=BIGINT},
+      </if>
+      <if test="record.aparentcomid != null" >
+        aParentComId = #{record.aparentcomid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dynamicid != null" >
+        dynamicId = #{record.dynamicid,jdbcType=BIGINT},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.cconten != null" >
+        cConten = #{record.cconten,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctime != null" >
+        cTime = #{record.ctime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update wg_anonymous_comment
+    set aCommentId = #{record.acommentid,jdbcType=BIGINT},
+      aParentComId = #{record.aparentcomid,jdbcType=BIGINT},
+      dynamicId = #{record.dynamicid,jdbcType=BIGINT},
+      userId = #{record.userid,jdbcType=BIGINT},
+      cConten = #{record.cconten,jdbcType=VARCHAR},
+      cTime = #{record.ctime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fk.gxwm.common.pojo.WgAnonymousComment" >
+    update wg_anonymous_comment
+    <set >
+      <if test="aparentcomid != null" >
+        aParentComId = #{aparentcomid,jdbcType=BIGINT},
+      </if>
+      <if test="dynamicid != null" >
+        dynamicId = #{dynamicid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="cconten != null" >
+        cConten = #{cconten,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        cTime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where aCommentId = #{acommentid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fk.gxwm.common.pojo.WgAnonymousComment" >
+    update wg_anonymous_comment
+    set aParentComId = #{aparentcomid,jdbcType=BIGINT},
+      dynamicId = #{dynamicid,jdbcType=BIGINT},
+      userId = #{userid,jdbcType=BIGINT},
+      cConten = #{cconten,jdbcType=VARCHAR},
+      cTime = #{ctime,jdbcType=TIMESTAMP}
+    where aCommentId = #{acommentid,jdbcType=BIGINT}
+  </update>
+   <!-- 分页查询 -->
+  <select id="selectAnsDy" resultMap="BaseResultMap" >
+      select * from wg_anonymous_comment where dynamicid = #{dynamicid}  order by cTime desc limit #{start},#{everyPage};
+  </select>
+</mapper>

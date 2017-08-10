@@ -1,5 +1,6 @@
 package com.fk.gxwm.system.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,8 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,7 +41,7 @@ public class AmousDyController {
      */
     @RequestMapping("/pubAnoDynamic")
     //@ResponseBody
-    public ModelAndView pubAnoDynamic(WgAnonymousDynamic wgAnonymousDynamic,
+    public void pubAnoDynamic(WgAnonymousDynamic wgAnonymousDynamic,
         @RequestParam("files") MultipartFile[] files,
         HttpServletRequest request,
         HttpServletResponse response) {
@@ -58,7 +57,14 @@ public class AmousDyController {
         modelAndView.setViewName("amousDy/amousDyManage");
         //modelAndView.addObject("name", "amousDyManage");  
         //response.sendRedirect(request.getContentLength()+"");
-        return modelAndView;
+        try {
+			//response.sendRedirect("http://127.0.0.1:8080/wmgx/");
+			response.sendRedirect("/wmgx");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        //return modelAndView;
     }
     /**
      * 根据id删除动态

@@ -210,6 +210,6 @@
   </update>
   <!-- 分页查询 -->
   <select id="selectAnsDy" resultMap="BaseResultMap" >
-      select * from wg_anonymous_dynamic limit #{start},#{everyPage};
+      select * from wg_anonymous_dynamic order by releaseTime desc limit #{start},#{everyPage};
   </select>
 </mapper>
