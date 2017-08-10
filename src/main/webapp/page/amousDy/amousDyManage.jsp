@@ -50,8 +50,13 @@
 									src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script> -->
 									<script type="text/javascript"
 									src="<%=path%>/js/importJs/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+									<script type="text/javascript" src="<%=path %>/js/importJs/jquery.mousewheel.js"></script>
 									
-
+ <script type="text/javascript">
+ 	var currentPage = '${page.currentPage }';
+	var totalCount = '${page.totalCount }';
+	var statue = (currentPage * '${ page.everyPage}' < totalCount);
+  </script>
 <script type="text/javascript">
     $(function(){
     	var dataStr ='{"currentPage":1}';
@@ -82,6 +87,7 @@
     //跳转到评论页面
     function getComment(amousId){
     	alert(amousId);
+    	window.open("<%=path%>/amousDy/findAnoDynamics");
     }
     //发布
     function punAmousDy(){
@@ -93,5 +99,35 @@
     	}
     	$("#punAmousDy").submit();
     }
+  //添加对于火狐浏览器的支持
+    var wheelType = "mousewheel";
+    if(/firefox/.test(navigator.userAgent.toLowerCase())){
+  	  wheelType = "DOMMouseScroll";
+    }   
+  //滑轮向下滚动刷出新数据，若已显示全部数据，则不再向后台发送请求
+    $("#amousDyListView").delegate(".fixed-table-body",wheelType,function(){
+  	  $(this).mousewheel(function(event, delta, deltaX, deltaY) {
+   			var a = $(event.currentTarget).height();
+   			var b = $(event.currentTarget).scrollTop();
+   			var c = event.currentTarget.scrollHeight;
+   			console.log(a+" "+b+" "+c);
+   			if(((a + b >= c-1000) && (delta < 0)) && (delta < 0) && statue){
+   				statue = false;
+   				$.ajax({
+   	      			type : "post",
+   	      			url : "<%=path%>/businessSystem/getOtherAcBusinessSystemList?page.currentPage="+currentPage,
+   	      			data :  $("#searchForm").serialize(),
+   	      			success:function(dates){
+   	      				statue = true;
+   	      				$("#businessSystemTable").append(dates);//要刷新的div
+   	      				$("#businessSystemMainTable").bootstrapTable("resetView");
+   	      			},
+   	      			error: function() {
+   	      	           alert("跳转失败，请稍后再试！");
+   	      	        }
+   	      		});
+   			}
+   	   });
+    });
 </script>
 </html>
