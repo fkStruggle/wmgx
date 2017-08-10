@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <link type="text/css" rel="stylesheet" href="<%=path%>/css/common.css" />
-<link rel="stylesheet" href="<%=path%>/js/importJs/jquery-ui-1.9.2.custom/css/base/jquery-ui-1.9.2.custom.min.css">
+<link rel="stylesheet" href="<%=path%>/js/importJs/jquery-ui-1.12.1.custom/jquery-ui.min.css">
 
 <div>
 									发布匿名交流:
@@ -34,7 +34,7 @@
 		<jsp:include page="amousDyList.jsp"></jsp:include>
 </div>
 <div id="dialog" style="display: none" >
-  <p>请输入内容</p>
+  <p style="color: red">请输入内容</p>
 </div>
 <script type="text/javascript"
 									src="<%=path%>/js/importJs/jquery-3.2.1.min.js"></script>
@@ -49,7 +49,7 @@
 									<!-- <script type="text/javascript"
 									src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script> -->
 									<script type="text/javascript"
-									src="<%=path%>/js/importJs/jquery-ui-1.9.2.custom/development-bundle/ui/jquery-ui.custom.js"></script>
+									src="<%=path%>/js/importJs/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 									
 
 <script type="text/javascript">
