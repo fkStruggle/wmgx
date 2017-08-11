@@ -17,4 +17,6 @@ import com.fk.gxwm.common.vo.ComentDetailVo;
  */
 public interface CommentService {
      public List<WgAnonymousComment> getComentDetails(Long dynamicid,Page page) throws ServiceException;
+     
+     public void addComment(WgAnonymousComment comment) throws ServiceException;
 }

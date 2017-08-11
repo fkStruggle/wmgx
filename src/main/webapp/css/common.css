@@ -2,3 +2,68 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+/*控制上传样式，暂时未用到
+ .file {
+    position: relative;
+    display: inline-block;
+    background: #D0EEFF;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+} */
+
+.fileinput-button {
+           position: relative;
+           display: inline-block;
+           overflow: hidden;
+       }
+
+.fileinput-button input{
+    position:absolute;
+    right: 0px;
+    top: 0px;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 200px;
+}
+
+/*控制图片样式，暂时未用到
+ .common_input .imgBtn {
+    position: relative;
+    display: block;
+    background: url(/image/icon_spirit2.png) -24px -168px no-repeat;
+}
+
+.common_input .disBtn, .common_input .file-input, .common_input .imgBtn {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.common_input .disBtn, .common_input .imgBtn {
+    line-height: 30px;
+    color: #999;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-right: 10px;
+    float: left;
+} */

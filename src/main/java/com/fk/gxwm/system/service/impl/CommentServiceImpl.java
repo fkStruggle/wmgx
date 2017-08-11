@@ -1,13 +1,18 @@
 package com.fk.gxwm.system.service.impl;
 
+import java.util.Date;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.fk.gxwm.common.mapper.WgAnonymousCommentMapper;
 import com.fk.gxwm.common.pojo.WgAnonymousComment;
 import com.fk.gxwm.common.util.Page;
 import com.fk.gxwm.common.util.exception.ServiceException;
-
+@Service("commentService")
 public class CommentServiceImpl implements CommentService {
+	@Autowired
 	private WgAnonymousCommentMapper wgAnonymousCommentMapper;
 	@Override
 	public List<WgAnonymousComment> getComentDetails(Long dynamicid,Page page)
@@ -21,6 +26,16 @@ public class CommentServiceImpl implements CommentService {
 			throw new ServiceException("查看评论详情发生错误");
 		}
 		return comments;
+	}
+	@Override
+	public void addComment(WgAnonymousComment comment) throws ServiceException {
+		try{
+			comment.setCtime(new Date());
+			wgAnonymousCommentMapper.insert(comment);
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new ServiceException("新增评论详情发生错误");
+		}
 	}
 
 }

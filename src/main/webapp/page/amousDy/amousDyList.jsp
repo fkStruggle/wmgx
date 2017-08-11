@@ -6,7 +6,8 @@
 %>
 <c:forEach items="${res.data }" var="aMousDyData">
 	<%-- <div id ="${aMousDyData.dynamicid }" style="cursor: pointer;" onclick="getComment(${aMousDyData.dynamicid });"> --%>
-	<div id ="${aMousDyData.dynamicid }" class ="cursor-pointer" onclick="getComment(${aMousDyData.dynamicid });">
+ 	<div id ="${aMousDyData.dynamicid }" class ="cursor-pointer" onclick="getComment('${aMousDyData.dynamicid }','${aMousDyData.dynamicinfo }','${aMousDyData.imageNames }');">
+	<%-- <div id ="${aMousDyData.dynamicid }" class ="cursor-pointer" onclick="getComment(${aMousDyData.dynamicid },${aMousDyData.dynamicinfo });"> --%>
 		<p>${aMousDyData.dynamicinfo }</p>
 		<c:forEach items="${aMousDyData.imageNames }" var="imageName">
 			<img alt="" src="/upload/${imageName}">
@@ -16,6 +17,6 @@
 			<li><span>赞</span></li>
 			<li style="width: 60px;"><span>评论</span></li>
 		</ul>
-	</div>
+	</div> 
 	<hr />
 </c:forEach>

@@ -226,7 +226,7 @@
     where aCommentId = #{acommentid,jdbcType=BIGINT}
   </update>
    <!-- 分页查询 -->
-  <select id="selectAnsDy" resultMap="BaseResultMap" >
+  <select id="selectComments" resultMap="BaseResultMap" >
       select * from wg_anonymous_comment where dynamicid = #{dynamicid}  order by cTime desc limit #{start},#{everyPage};
   </select>
 </mapper>
