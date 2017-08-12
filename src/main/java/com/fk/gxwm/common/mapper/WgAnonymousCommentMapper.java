@@ -1,12 +1,11 @@
 package com.fk.gxwm.common.mapper;
 
-import com.fk.gxwm.common.pojo.WgAnonymousComment;
-import com.fk.gxwm.common.pojo.WgAnonymousCommentExample;
-import com.fk.gxwm.common.pojo.WgAnonymousDynamic;
-
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+
+import com.fk.gxwm.common.pojo.WgAnonymousComment;
+import com.fk.gxwm.common.pojo.WgAnonymousCommentExample;
 
 public interface WgAnonymousCommentMapper {
     int countByExample(WgAnonymousCommentExample example);
@@ -32,4 +31,5 @@ public interface WgAnonymousCommentMapper {
     int updateByPrimaryKey(WgAnonymousComment record);
     
     List<WgAnonymousComment> selectComments(@Param("dynamicid") Long dynamicid,@Param("start") int start,@Param("everyPage") int everyPage);
+    int countComment(@Param("dynamicid") Long dynamicid);
 }

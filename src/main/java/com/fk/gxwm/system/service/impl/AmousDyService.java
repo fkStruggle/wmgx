@@ -45,4 +45,6 @@ public interface AmousDyService {
     * @throws 自定义service异常
      */
     public List<WgAnonymousDynamic> findAnoDynamics(Page page) throws ServiceException;
+    
+    public int countAnoDynamic() throws ServiceException;
 }

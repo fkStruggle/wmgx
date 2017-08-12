@@ -12,30 +12,40 @@ import com.fk.gxwm.common.util.Page;
 import com.fk.gxwm.common.util.exception.ServiceException;
 @Service("commentService")
 public class CommentServiceImpl implements CommentService {
-	@Autowired
-	private WgAnonymousCommentMapper wgAnonymousCommentMapper;
-	@Override
-	public List<WgAnonymousComment> getComentDetails(Long dynamicid,Page page)
-			throws ServiceException {
-		// 查询评论详细信息
-		List<WgAnonymousComment> comments = null;
-		try{
-			comments = wgAnonymousCommentMapper.selectComments(dynamicid, (page.getCurrentPage() - 1) * page.getEveryPage(), page.getEveryPage());
-		}catch(Exception e){
-			e.printStackTrace();
-			throw new ServiceException("查看评论详情发生错误");
-		}
-		return comments;
-	}
-	@Override
-	public void addComment(WgAnonymousComment comment) throws ServiceException {
-		try{
-			comment.setCtime(new Date());
-			wgAnonymousCommentMapper.insert(comment);
-		}catch(Exception e){
-			e.printStackTrace();
-			throw new ServiceException("新增评论详情发生错误");
-		}
-	}
+    @Autowired
+    private WgAnonymousCommentMapper wgAnonymousCommentMapper;
+    @Override
+    public List<WgAnonymousComment> getComentDetails(Long dynamicid, Page page) throws ServiceException {
+        // 查询评论详细信息
+        List<WgAnonymousComment> comments = null;
+        try {
+            comments = wgAnonymousCommentMapper.selectComments(dynamicid, (page.getCurrentPage() - 1) * page.getEveryPage(), page.getEveryPage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ServiceException("查看评论详情发生错误");
+        }
+        return comments;
+    }
+    @Override
+    public void addComment(WgAnonymousComment comment) throws ServiceException {
+        try {
+            comment.setCtime(new Date());
+            wgAnonymousCommentMapper.insert(comment);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ServiceException("新增评论详情发生错误");
+        }
+    }
+    @Override
+    public int getComentCount(Long dynamicid) throws ServiceException {
+        int count = 0;
+        try{
+            count = wgAnonymousCommentMapper.countComment(dynamicid);
+        }catch(Exception e){
+            e.printStackTrace();
+            throw new ServiceException("查询评论数量发生错误");
+        }
+        return count;
+    }
 
 }

@@ -14,6 +14,7 @@
 	<p>${dynamicinfoTemp }</p>
 	<c:if test="${dynamicImageTemp != null || dynamicImageTemp != ''}">
 		<%-- <c:if test="${aMousDyData.imageNames }"> --%>
+		<%-- <c:if test="${list== null || fn:length(list) == 0}"></c:if> --%>
 		<c:forEach items="${dynamicImageTemp }" var="imageName">
 			<img alt="" src="/upload/${imageName}">
 		</c:forEach>
@@ -48,6 +49,11 @@
 <script type="text/javascript"
 	src="<%=path%>/js/importJs/jquery.mousewheel.js"></script>
 <script src="<%=path%>/bootstrap/js/bootstrap.js"></script>
+ <script type="text/javascript">
+ 	var currentPage;
+	var totalCount;
+	var statue;
+   </script> 
 <script type="text/javascript">
 //评论
     function addComment(){
@@ -106,5 +112,38 @@
 		});
 
 	}
+	
+	//添加对于火狐浏览器的支持
+    var wheelType = "mousewheel";
+    if(/firefox/.test(navigator.userAgent.toLowerCase())){
+  	  wheelType = "DOMMouseScroll";
+    }   
+  //滑轮向下滚动刷出新数据，若已显示全部数据，则不再向后台发送请求
+  	  $("#commentListView").mousewheel(function(event, delta, deltaX, deltaY) {
+  		  debugger;
+   			var a = $(event.currentTarget).height();
+   			var b = $(event.currentTarget).scrollTop();
+   			var c = event.currentTarget.scrollHeight;
+   			console.log(a+" "+b+" "+c);
+   			var dynamicid  = $("#dynamicid").val();
+   	    	var data = {};
+   	    	data.dynamicid = dynamicid;
+   	    	data.currentPage=parseInt(currentPage)+1;
+   			if(((a + b >= c-1000) && (delta < 0)) && (delta < 0) && statue){
+   				statue = false;
+   				$.ajax({
+   	      			type : "post",
+   	      			url : '<%=path%>/commentDetail/findComentLists',
+   	      			data :  data,
+   	      			success:function(dates){
+   	      				statue = true;
+   	      				$("#commentListView").append(dates);//要刷新的div
+   	      			},
+   	      			error: function() {
+   	      	           alert("跳转失败，请稍后再试！");
+   	      	        }
+   	      		});
+   			}
+   	   });
 </script>
 </html>

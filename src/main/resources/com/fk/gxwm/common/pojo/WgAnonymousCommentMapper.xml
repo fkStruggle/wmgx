@@ -229,4 +229,8 @@
   <select id="selectComments" resultMap="BaseResultMap" >
       select * from wg_anonymous_comment where dynamicid = #{dynamicid}  order by cTime desc limit #{start},#{everyPage};
   </select>
+  <!-- 查询评论数量 -->
+  <select id="countComment" parameterType="com.fk.gxwm.common.pojo.WgAnonymousComment" resultType="java.lang.Integer" >
+    select count(*) from wg_anonymous_comment where dynamicid =#{dynamicid};
+  </select>
 </mapper>

@@ -121,4 +121,15 @@ public class AmousDyServiceImpl implements AmousDyService {
         }
         return wads;
     }
+    @Override
+    public int countAnoDynamic() throws ServiceException {
+        int count = 0;
+        try{
+            count = wgAnonymousDynamicMapper.countAnoDynamic();
+        }catch(Exception e){
+            e.printStackTrace();
+            throw new ServiceException("service层错误：匿名动态数量发生错误");
+        }
+        return count;
+    }
 }

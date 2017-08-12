@@ -11,3 +11,8 @@
 	</div> 
 	<hr />
 </c:forEach>
+ <script type="text/javascript">
+ 	 currentPage = '${page.currentPage }';
+	 totalCount = '${page.totalCount }';
+	 statue = (currentPage * '${ page.everyPage}' < totalCount);
+   </script> 

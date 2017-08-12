@@ -212,4 +212,8 @@
   <select id="selectAnsDy" resultMap="BaseResultMap" >
       select * from wg_anonymous_dynamic order by releaseTime desc limit #{start},#{everyPage};
   </select>
+  <!-- 匿名动态条数 -->
+  <select id ="countAnoDynamic" resultType="java.lang.Integer">
+      select count(dynamicId) from wg_anonymous_dynamic;
+  </select>
 </mapper>

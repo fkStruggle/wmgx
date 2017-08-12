@@ -49,12 +49,14 @@ public class CommentDetailController {
     	if(!StringUtils.isEmpty(dynamicImageTemp)){
     		dynamicImageTemp = dynamicImageTemp.substring(1, dynamicImageTemp.length()-1);
     		for(String s:dynamicImageTemp.split(",")){
+    		    if(!StringUtils.isEmpty(s))
     			dynamicImages.add(s.trim());
     		}
     	}
     	ResponseMsg res = new ResponseMsg(true, Constant.successCode, "发布成功", null);
     	try{
     		comments = commentService.getComentDetails(dynamicid, page);
+    		page.setTotalCount(commentService.getComentCount(dynamicid));
     		res.setData(comments);
     	}catch(ServiceException e){
     		e.printStackTrace();
@@ -65,6 +67,7 @@ public class CommentDetailController {
     	model.addObject("dynamicIdTemp", dynamicid);
     	model.addObject("dynamicinfoTemp", dynamicinfoTemp);
     	model.addObject("dynamicImageTemp", dynamicImages);
+    	model.addObject("page", page);
 		return model;
         
     }
@@ -99,6 +102,7 @@ public class CommentDetailController {
     	ResponseMsg res = new ResponseMsg(true, Constant.successCode, "查看成功", null);
     	try{
     		comments = commentService.getComentDetails(dynamicid, page);
+    		page.setTotalCount(commentService.getComentCount(dynamicid));
     		res.setData(comments);
     	}catch(ServiceException e){
     		e.printStackTrace();
@@ -106,6 +110,7 @@ public class CommentDetailController {
     	}
     	model.setViewName("comment/commentList");
     	model.addObject("res", res);
+    	model.addObject("page", page);
 		return model;
         
     }

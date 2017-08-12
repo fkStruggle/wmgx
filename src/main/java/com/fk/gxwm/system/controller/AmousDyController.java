@@ -95,6 +95,7 @@ public class AmousDyController {
         }
         try {
             wads = amousDyService.findAnoDynamics(page);
+            page.setTotalCount(amousDyService.countAnoDynamic());
             res.setData(wads);
         } catch (ServiceException e) {
             e.printStackTrace();
@@ -102,6 +103,7 @@ public class AmousDyController {
         }
         model.addObject("res",res);
         model.setViewName("amousDy/amousDyList");
+        model.addObject("page", page);
         return model;
     }
 

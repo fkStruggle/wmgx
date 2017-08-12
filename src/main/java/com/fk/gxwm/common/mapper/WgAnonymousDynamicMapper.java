@@ -29,4 +29,5 @@ public interface WgAnonymousDynamicMapper {
     int updateByPrimaryKey(WgAnonymousDynamic record);
     
     List<WgAnonymousDynamic> selectAnsDy(@Param("start") int start,@Param("everyPage") int everyPage);
+    int countAnoDynamic();
 }
