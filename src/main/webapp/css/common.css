@@ -67,3 +67,155 @@
     margin-right: 10px;
     float: left;
 } */
+/* 以下评论样式 */
+.PCzkp {
+    width: 70%;
+}
+.PCzkp, .PCzkp li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.float-r {
+    float: right;
+}
+.PCpingIcon {
+    background: url(../image/icon_action_comment_normal@3x.png) left center no-repeat;
+    background-size: 24px;
+}
+/* 一条动态样式 */
+.PCGossipContainer {
+    margin-left: 17px;
+    margin-right: 17px;
+    padding: 24px 16px 4px;
+    position: relative;
+}
+
+@media (min-width: 410px)
+.borderBottom {
+    border-bottom: 1px solid rgba(187,187,187,.2);
+    box-shadow: none;
+}
+.borderBottom {
+    margin-bottom: 1px;
+    box-shadow: 0 1px 1px -1px rgba(187,187,187,.8);
+}
+@media (min-width: 410px)
+.borderBottom {
+    border-bottom: 1px solid rgba(187,187,187,.2);
+    margin-bottom: 0;
+    box-shadow: none;
+}
+
+.m-b, .m-y {
+    margin-bottom: 15px!important;
+}
+
+div, p, span {
+    word-break: break-word;
+}
+
+.PCzkp li span {
+    display: inline-block;
+    cursor: pointer;	
+    padding-left: 25px;
+}
+
+.sendFeedTit {
+    font-size: 14px;
+    height: 22px;
+    line-height: 22px;
+    padding-left: 12px;
+}
+
+.gossip_editor .common_input {
+    padding-top: 0;
+}
+.common_input {
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 45px;
+}
+
+.common_input .inputPanel {
+    padding: 13px;
+    border: 1px solid #e2e2e2;
+    font-size: 14px;
+    line-height: 24px;
+    outline: 0;
+    width: 100%;
+    resize: none;
+}
+
+.text-muted {
+    color: #7d7d7d;
+}
+
+.text-muted {
+    color: #7d7d7d;
+}
+.small, small {
+    font-size: 85%;
+}
+
+.common_input .sendBtn {
+    float: right;
+    margin: -2px 626px 0;
+}
+.btn, .cursor-pointer {
+    cursor: pointer;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #2d9fea;
+    border-color: #1794e6;
+}
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    touch-action: manipulation;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    outline: 0;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    user-select: none;
+}
+
+.common_input .imgBtn {
+    position: relative;
+    display: block;
+    background: url(../image/icon_spirit2.png) -24px -168px no-repeat;
+}
+
+.common_input .disBtn, .common_input .file-input, .common_input .imgBtn {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+.common_input .disBtn, .common_input .imgBtn {
+    line-height: 30px;
+    color: #999;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-right: 10px;
+    float: left;
+}
+
+.common_input .file-input {
+    display: inline-block;
+    opacity: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+hr, img {
+    border: 0;
+}

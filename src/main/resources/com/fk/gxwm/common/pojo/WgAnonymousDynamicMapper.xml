@@ -7,6 +7,7 @@
     <result column="dynamicInfo" property="dynamicinfo" jdbcType="VARCHAR" />
     <result column="dynamicImg" property="dynamicimg" jdbcType="VARCHAR" />
     <result column="releaseTime" property="releasetime" jdbcType="TIMESTAMP" />
+    <result column="commentCount" property="commentCount" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -210,7 +211,27 @@
   </update>
   <!-- 分页查询 -->
   <select id="selectAnsDy" resultMap="BaseResultMap" >
-      select * from wg_anonymous_dynamic order by releaseTime desc limit #{start},#{everyPage};
+     <!--  select * from wg_anonymous_dynamic order by releaseTime desc limit #{start},#{everyPage}; -->
+     SELECT
+	wd.dynamicId,
+	dynamicInfo,
+	dynamicImg,
+	releaseTime,
+	CASE
+WHEN wc.dynamicId IS NOT NULL THEN
+	count(wd.dynamicId) 
+ELSE
+	0 
+END commentCount
+FROM
+	wg_anonymous_dynamic wd
+LEFT JOIN wg_anonymous_comment wc ON wd.dynamicId = wc.dynamicId
+GROUP BY
+	wd.dynamicId,
+	dynamicInfo,
+	dynamicImg,
+	releaseTime
+order by releaseTime desc limit #{start},#{everyPage};
   </select>
   <!-- 匿名动态条数 -->
   <select id ="countAnoDynamic" resultType="java.lang.Integer">

@@ -15,6 +15,16 @@ public class WgAnonymousDynamic {
     private Date releasetime;
     
     private List<String> imageNames;
+    //评论数量，临时属性
+    private int commentCount;
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
 
     public List<String> getImageNames() {
         return imageNames;

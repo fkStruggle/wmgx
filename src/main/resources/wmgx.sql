@@ -23,7 +23,7 @@ CREATE TABLE `wg_anonymous_dynamic` (
   `dynamicId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '匿名动态id',
   `userLoginName` varchar(10) NOT NULL COMMENT '用户登录名',
   `dynamicInfo` varchar(140) NOT NULL COMMENT '动态内容',
-  `dynamicImg` varchar(150) DEFAULT NULL COMMENT '匿名动态图片',
+  `dynamicImg` varchar(250) DEFAULT NULL COMMENT '匿名动态图片',
   `releaseTime` datetime NOT NULL COMMENT '动态发布时间',
   PRIMARY KEY (`dynamicId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='匿名动态信息';
