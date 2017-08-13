@@ -45,6 +45,7 @@ public class CommentDetailController {
     	dynamicid = Long.valueOf(dynamicidTemp);
     	String dynamicinfoTemp = request.getParameter("dynamicinfoTemp");
     	String dynamicImageTemp = request.getParameter("dynamicImageTemp");
+    	String commentCount = request.getParameter("commentCount");
     	List<String> dynamicImages = new ArrayList<String>();
     	if(!StringUtils.isEmpty(dynamicImageTemp)){
     		dynamicImageTemp = dynamicImageTemp.substring(1, dynamicImageTemp.length()-1);
@@ -67,6 +68,7 @@ public class CommentDetailController {
     	model.addObject("dynamicIdTemp", dynamicid);
     	model.addObject("dynamicinfoTemp", dynamicinfoTemp);
     	model.addObject("dynamicImageTemp", dynamicImages);
+    	model.addObject("commentCount",commentCount);
     	model.addObject("page", page);
 		return model;
         

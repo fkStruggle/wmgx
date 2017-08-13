@@ -6,7 +6,7 @@
 %>
 <c:forEach items="${res.data }" var="aMousDyData">
 	<%-- <div id ="${aMousDyData.dynamicid }" style="cursor: pointer;" onclick="getComment(${aMousDyData.dynamicid });"> --%>
- 	<div id ="${aMousDyData.dynamicid }" class ="borderBottom PCGossipContainer cursor-pointer" onclick="getComment('${aMousDyData.dynamicid }','aMous${aMousDyData.dynamicid }','${aMousDyData.imageNames }');">
+ 	<div id ="${aMousDyData.dynamicid }" class ="borderBottom PCGossipContainer cursor-pointer" onclick="getComment('${aMousDyData.dynamicid }','aMous${aMousDyData.dynamicid }','${aMousDyData.imageNames }','${aMousDyData.commentCount }');">
 	<%-- <div id ="${aMousDyData.dynamicid }" class ="cursor-pointer" onclick="getComment(${aMousDyData.dynamicid },${aMousDyData.dynamicinfo });"> --%>
 		<div class =".m-b">
 		<div>

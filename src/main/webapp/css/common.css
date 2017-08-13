@@ -111,9 +111,9 @@
     margin-bottom: 15px!important;
 }
 
-div, p, span {
+/* div, p, span {
     word-break: break-word;
-}
+} */
 
 .PCzkp li span {
     display: inline-block;
@@ -162,6 +162,13 @@ div, p, span {
     float: right;
     margin: -2px 626px 0;
 }
+
+ .comSendBtn {
+    float: right;
+    margin: -1px 642px 0;
+    cursor: pointer;
+}
+
 .btn, .cursor-pointer {
     cursor: pointer;
 }
@@ -218,4 +225,26 @@ img {
 
 hr, img {
     border: 0;
+}
+
+.p-l-md, .p-x-md {
+    padding-left: 22.5px!important;
+}
+
+.p-r-md, .p-x-md {
+    padding-right: 22.5px!important;
+}
+
+/* .discuzTit {
+    background: url(../image/helpBg.png) left center no-repeat #fff;
+    background-size: auto 15px;
+    line-height: 36px;
+    font-size: 13px;
+} */
+
+.discuzTit {
+    background: url(../image/helpBg.png) left center no-repeat #fff;
+    background-size: auto 15px;
+    line-height: 30px;
+    font-size: 22px;
 }

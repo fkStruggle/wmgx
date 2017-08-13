@@ -93,6 +93,9 @@
 																							id="dynamicIdTemp"> <input
 																							type="hidden" value=""
 																							name="dynamicImageTemp" id="dynamicImageTemp">
+																							<input
+																							type="hidden" value=""
+																							name="commentCount" id="commentCount">
 					</form>
 </div>
 <!-- 数据 -->
@@ -152,7 +155,7 @@
 		});  */
 	});
     //跳转到评论页面
-    function getComment(amousId,temp,image){
+    function getComment(amousId,temp,image,commentCount){
     	debugger;
     	//alert(amousId);
     	var amousInfo = $('#'+temp).text();
@@ -160,6 +163,7 @@
     	$("#dynamicIdTemp").val(amousId);
     	$("#dynamicinfoTemp").val(amousInfo);
     	$("#dynamicImageTemp").val(image);
+    	$("#commentCount").val(commentCount);
     	$("#formTemp").submit();
     }
     //发布
