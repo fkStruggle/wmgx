@@ -62,6 +62,7 @@ CREATE TABLE `wg_anonymous_comment` (
   `dynamicId` bigint(20) NOT NULL,
   `userId` bigint(20) DEFAULT NULL,
   `cConten` varchar(250) NOT NULL,
+  `amousName` varchar(6) DEFAULT NULL,
   `cTime` datetime DEFAULT NULL,
   PRIMARY KEY (`aCommentId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

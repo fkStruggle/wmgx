@@ -127,6 +127,11 @@ react-text: 180/react-text --><!-- react-text: 19//react-text --><!-- react-text
     		$( "#dialog" ).dialog();
     		return;
     	}
+    	if(cconten.length > 249){
+    		$("#warnCont").text('最多输入250字');
+    		$( "#dialog" ).dialog();
+    		return ;
+    	}
     	var data = {};
     	data.dynamicid = dynamicid;
     	data.cconten = cconten;

@@ -3,6 +3,7 @@ package com.fk.gxwm.system.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,7 +58,7 @@ public class CommentDetailController {
     	ResponseMsg res = new ResponseMsg(true, Constant.successCode, "发布成功", null);
     	try{
     		comments = commentService.getComentDetails(dynamicid, page);
-    		page.setTotalCount(commentService.getComentCount(dynamicid));
+    		//page.setTotalCount(commentService.getComentCount(dynamicid));
     		res.setData(comments);
     	}catch(ServiceException e){
     		e.printStackTrace();
@@ -79,6 +80,8 @@ public class CommentDetailController {
     	WgAnonymousComment comment = new WgAnonymousComment();
     	comment.setCconten(request.getParameter("cconten"));
     	comment.setDynamicid(Long.valueOf(request.getParameter("dynamicid")));
+    	int ra=(int)(Math.random()*50);
+    	comment.setAmousName(Constant.amousDyNames[ra]);
     	ResponseMsg res = new ResponseMsg(true, Constant.successCode, "发布成功", null);
     	try{
     		commentService.addComment(comment);
@@ -104,7 +107,7 @@ public class CommentDetailController {
     	ResponseMsg res = new ResponseMsg(true, Constant.successCode, "查看成功", null);
     	try{
     		comments = commentService.getComentDetails(dynamicid, page);
-    		page.setTotalCount(commentService.getComentCount(dynamicid));
+    		//page.setTotalCount(commentService.getComentCount(dynamicid));
     		res.setData(comments);
     	}catch(ServiceException e){
     		e.printStackTrace();

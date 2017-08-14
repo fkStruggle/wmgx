@@ -115,12 +115,14 @@ public class AmousDyServiceImpl implements AmousDyService {
                 //jsonObjec.keySet();list
                 wad.setImageNames(list);
             }
+            page.setTotalCount(this.countAnoDynamic());
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServiceException("service层错误：查看匿名动态发生错误");
         }
         return wads;
     }
+    @Transactional(propagation=Propagation.REQUIRED)
     @Override
     public int countAnoDynamic() throws ServiceException {
         int count = 0;
