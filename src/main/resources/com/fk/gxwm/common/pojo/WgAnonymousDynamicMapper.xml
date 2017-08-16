@@ -231,7 +231,7 @@ GROUP BY
 	dynamicInfo,
 	dynamicImg,
 	releaseTime
-order by releaseTime desc limit #{start},#{everyPage};
+order by  commentCount desc ,  releaseTime desc limit #{start},#{everyPage};
   </select>
   <!-- 匿名动态条数 -->
   <select id ="countAnoDynamic" resultType="java.lang.Integer">
