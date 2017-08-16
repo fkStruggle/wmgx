@@ -7,6 +7,7 @@
     <result column="dynamicId" property="dynamicid" jdbcType="BIGINT" />
     <result column="userId" property="userid" jdbcType="BIGINT" />
     <result column="cConten" property="cconten" jdbcType="VARCHAR" />
+    <result column="amousName" property="amousName" jdbcType="VARCHAR" />
     <result column="cTime" property="ctime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -102,10 +103,10 @@
   </delete>
   <insert id="insert" parameterType="com.fk.gxwm.common.pojo.WgAnonymousComment" >
     insert into wg_anonymous_comment (aCommentId, aParentComId, dynamicId, 
-      userId, cConten, cTime
+      userId, cConten, amousName, cTime
       )
     values (#{acommentid,jdbcType=BIGINT}, #{aparentcomid,jdbcType=BIGINT}, #{dynamicid,jdbcType=BIGINT}, 
-      #{userid,jdbcType=BIGINT}, #{cconten,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}
+      #{userid,jdbcType=BIGINT}, #{cconten,jdbcType=VARCHAR},#{amousName,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.fk.gxwm.common.pojo.WgAnonymousComment" >

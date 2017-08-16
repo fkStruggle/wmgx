@@ -176,6 +176,11 @@
     		$( "#dialog" ).dialog();
     		return ;
     	}
+    	if(dynamicinfo.length > 139){
+    		$("#warnCont").text('最多输入140字');
+    		$( "#dialog" ).dialog();
+    		return ;
+    	}
     	if(size>10){
     		$("#warnCont").text('一次最多上传10张图片');
     		$( "#dialog" ).dialog();

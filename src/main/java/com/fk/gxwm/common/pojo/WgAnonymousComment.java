@@ -14,6 +14,8 @@ public class WgAnonymousComment {
     private String cconten;
 
     private Date ctime;
+    //匿名
+    private String amousName;
 
     public Long getAcommentid() {
         return acommentid;
@@ -62,4 +64,13 @@ public class WgAnonymousComment {
     public void setCtime(Date ctime) {
         this.ctime = ctime;
     }
+
+	public String getAmousName() {
+		return amousName;
+	}
+
+	public void setAmousName(String amousName) {
+		this.amousName = amousName;
+	}
+    
 }
